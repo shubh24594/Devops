@@ -7,6 +7,7 @@ import com.cg.billing.beans.Customer;
 import com.cg.billing.beans.Plan;
 import com.cg.billing.beans.PostpaidAccount;
 import com.cg.billing.exceptions.BillingServicesDownException;
+import com.cg.billing.exceptions.CustomerDetailsNotFoundException;
 import com.cg.billing.exceptions.PlanDetailsNotFoundException;
 import com.cg.billing.exceptions.PostpaidAccountNotFoundException;
 
@@ -22,7 +23,7 @@ public interface IBillingDao {
 		List<Bill>getCustomerPostPaidAccountAllBills(int customerID, long mobileNo);
 		List<PostpaidAccount> getCustomerPostPaidAccounts(int customerID);
 		Customer getCustomer(int customerID);
-		List<Customer>  getAllCustomers();
+		List<Customer>  getAllCustomers() throws CustomerDetailsNotFoundException;
 	    List<Plan> getAllPlans();
 	    Plan getPlan(int planID) ;
 		PostpaidAccount getCustomerPostPaidAccount(int customerID, long mobileNo);

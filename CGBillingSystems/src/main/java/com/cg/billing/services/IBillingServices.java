@@ -1,5 +1,6 @@
 package com.cg.billing.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.cg.billing.beans.Bill;
@@ -31,7 +32,7 @@ public interface IBillingServices {
 		Customer getCustomerDetails(int customerID)
 				throws CustomerDetailsNotFoundException, BillingServicesDownException;
 		
-		List<Customer>  getAllCustomerDetails() throws BillingServicesDownException;
+		List<Customer>  getAllCustomerDetails() throws BillingServicesDownException, CustomerDetailsNotFoundException;
 		
 		PostpaidAccount getPostPaidAccountDetails(int customerID, long mobileNo) 
 				throws CustomerDetailsNotFoundException, 
@@ -70,4 +71,7 @@ public interface IBillingServices {
 		
 
 		boolean authenticateCustomer(Customer customer) throws CustomerDetailsNotFoundException, BillingServicesDownException;
+
+		long openPostpaidMobileAccount(int customerID, int planid)
+				throws PlanDetailsNotFoundException, CustomerDetailsNotFoundException, BillingServicesDownException;
 }

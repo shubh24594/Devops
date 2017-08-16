@@ -32,7 +32,7 @@ public class BillingServicesImpl implements IBillingServices {
 	}
 
 	@Override
-	public long openPostpaidMobileAccount(int customerID, int planid, PostpaidAccount account)
+	public long openPostpaidMobileAccount(int customerID, int planid)
 			throws PlanDetailsNotFoundException, CustomerDetailsNotFoundException, BillingServicesDownException {
 		// TODO Auto-generated method stub
 		return 0;
@@ -50,14 +50,14 @@ public class BillingServicesImpl implements IBillingServices {
 	@Override
 	public Customer getCustomerDetails(int customerID)
 			throws CustomerDetailsNotFoundException, BillingServicesDownException {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return dao.getCustomer(customerID);
 	}
 
 	@Override
-	public List<Customer> getAllCustomerDetails() throws BillingServicesDownException {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Customer> getAllCustomerDetails() throws BillingServicesDownException, CustomerDetailsNotFoundException {
+	    
+		return dao.getAllCustomers();
 	}
 
 	@Override
@@ -106,8 +106,8 @@ public class BillingServicesImpl implements IBillingServices {
 	@Override
 	public boolean deleteCustomer(int customerID)
 			throws BillingServicesDownException, CustomerDetailsNotFoundException {
-		// TODO Auto-generated method stub
-		return false;
+		return dao.deleteCustomer(customerID);
+		
 	}
 
 	@Override
@@ -129,6 +129,13 @@ public class BillingServicesImpl implements IBillingServices {
 			throws CustomerDetailsNotFoundException, BillingServicesDownException {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public long openPostpaidMobileAccount(int customerID, int planid, PostpaidAccount account)
+			throws PlanDetailsNotFoundException, CustomerDetailsNotFoundException, BillingServicesDownException {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

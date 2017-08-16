@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
@@ -12,6 +13,7 @@ import com.cg.billing.beans.Customer;
 import com.cg.billing.beans.Plan;
 import com.cg.billing.beans.PostpaidAccount;
 import com.cg.billing.exceptions.BillingServicesDownException;
+import com.cg.billing.exceptions.CustomerDetailsNotFoundException;
 import com.cg.billing.exceptions.PlanDetailsNotFoundException;
 import com.cg.billing.exceptions.PostpaidAccountNotFoundException;
 
@@ -80,14 +82,19 @@ public class BillingDaoImpl implements IBillingDao{
 
 	@Override
 	public Customer getCustomer(int customerID) {
-		// TODO Auto-generated method stub
-		return null;
+		Customer customer=em.find(Customer.class, customerID);
+		return customer;
 	}
 
+	
+	@SuppressWarnings("unchecked")
 	@Override
-	public List<Customer> getAllCustomers() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Customer> getAllCustomers()  {
+		Query qureyOne = em.createQuery("FROM Customer");
+		
+		List<Customer> customer = qureyOne.getResultList();
+		return customer;
+		
 	}
 
 	@Override
@@ -116,7 +123,8 @@ public class BillingDaoImpl implements IBillingDao{
 
 	@Override
 	public boolean deleteCustomer(int customerID) {
-		// TODO Auto-generated method stub
+		Customer customer=em.find(Customer.class, customerID);
+		em.remove(customer);
 		return false;
 	}
 

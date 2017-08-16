@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Embedded;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class PostpaidAccount {
@@ -20,8 +21,9 @@ public class PostpaidAccount {
 	@GeneratedValue(strategy=GenerationType.TABLE)
 	private long mobileNo;
 	
-	@Embedded
-	private Plan plan;
+     @OneToOne
+     @JoinColumn(name="planID")
+    private Plan plan;
 	
 	@ManyToOne
 	@JoinColumn(name="customerID")
