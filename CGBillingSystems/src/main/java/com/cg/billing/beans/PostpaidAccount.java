@@ -25,7 +25,7 @@ public class PostpaidAccount {
      @JoinColumn(name="planID")
     private Plan plan;
 	
-	@ManyToOne
+    @ManyToOne
 	@JoinColumn(name="customerID")
 	private Customer customer;
 	
